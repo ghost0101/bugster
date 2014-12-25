@@ -1,4 +1,4 @@
-Bugster
+*Bugster
 ===========
 
 WTF is this?
@@ -18,3 +18,27 @@ I don't know much about what I am going to do, but I know that I will include so
 
 
 ![GitHub Logo](http://img-9gag-lol.9cache.com/photo/aZP3rbQ_460sa.gif)
+
+Rules-
+========
+Bugs
+--------------
+* A positive vote  = 1 bug (OP earns 1 bug, voter looses 1, content is added to the voter favorite's gallery)
+* A negative vote  = 1 bug (OP looses 1 bug voter looses 1 bug too)
+* 10 visits = 1 bug
+* invite a friend = 50 bugs
+
+Features
+--------------
+* Create a new place/rincon
+	* Places are categories
+	* You can suscribe to different places
+
+
+Recomendations
+--------------
+* Please be civil
+*
+
+Resources
+* http://vimeo.com/56166857
