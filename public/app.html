@@ -1,0 +1,46 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+io = io.connect()
+  io.on('posts:create', function(data) {
+  $('ul').append('<li>'+data.post+' <a href="#" id='+data.id+'>delete</a></li>')
+});
+io.on('posts:remove', function(data) {
+  $('a[id='+data.id+']').parent().remove();
+});
+io.on('posts:saludar', function(data) {
+  alert(data.data);
+});
+
+
+
+$(function() {
+  $('button.create').click(function() {
+    data = {post: prompt('Type a post!')}
+    io.emit('posts:create', data);
+  })
+  $('body').on('click', 'a', function(event) {
+    event.preventDefault()
+    io.emit('posts:remove', {id: $(event.currentTarget).attr('id')});
+  })
+
+
+});
+
+function saludar(saludo) {
+  console.log("enviando saludo"+saludo);
+  io.emit('posts:saludar',{data:prompt("Envía un saludo")});
+}
+function algoCtrl($scope) {
+  alert('msg');
+  console.log("ssdsdfsd");
+}
+</script>
+<ul></ul>
+<div ng-controller="algoCtrl">
+
+</div>
+<button onclick="saludar('holasssss')">Saludar</button>
+<button class="create">Create Post</button>
