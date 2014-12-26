@@ -1,0 +1,24 @@
+  <!-- <h1>Imágenes recomendadas</h1> -->
+  <br>
+  <div class="row">
+    <div class="col-sm-3 col-xs-6" ng-repeat="i in images">
+       <div class="panel panel-default">
+         <div class=" img-holder"><img ng-src="{{i.url}}" width="100%" class="img-responsive"></div>
+         <div class="panel-body">
+           <p class="lead">{{i.title}}</p>
+           <p>{{i.description}}</p>
+
+           <p>
+             <img src="http://api.randomuser.me/portraits/med/men/20.jpg" width="28px" height="28px">
+             <img src="http://api.randomuser.me/portraits/med/men/21.jpg" width="28px" height="28px">
+             <img src="http://api.randomuser.me/portraits/med/men/14.jpg" width="28px" height="28px">
+           </p>
+         </div>
+       </div>
+     </div><!--/col-->
+  </div>
+
+    <ul class="lista"></ul>
+
+    <button ng-click="saludar('holasssss')">Saludar</button>
+    <button class="create">Create Post</button>

@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-envelope-o"></i> Messages</h3>
+  </div>
+  <div class="panel-body" ng-controller="MessagesCtrl">
+    <tabset justified="true">
+      <tab heading="Received">
+        <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>From</th>
+                <th>Date</th>
+                <th>Preview</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="m in inbox">
+                <td style="background-image:url({{m.user_picture}});height:40px;width:40px;background-size:100%;">
+                </td>
+                <td >
+                  <a href="#/mate/{{m.message_from}}">{{m.user_name}}</a>
+                </td>
+                <td>{{m.message_date| date:'dd/MM/yyyy @ h:mma'}}</td>
+                <td>{{m.message_content | limitTo: 100}}</td>
+                <td>
+                  <a href="#/mate/{{m.message_from}}" tooltip="View user's profile" class="btn btn-default"><i class="fa fa-user"></i></a>
+                  <a href="javascript:;" tooltip="" class="btn btn-primary" ng-click="sendMessage(m.message_from)"><i class="fa fa-envelope-o"></i> Read full conversation</a>
+                  <a href="javascript:;" tooltip="Delete conversation" class="btn btn-danger" ng-click="deleteConversation(m.message_from)"><i class="fa fa-trash-o"></i> </a>
+                  <a ng-controller="ReportUserCtrl" tooltip="Report user" href="javascript:;" class="btn btn-warning" ng-click="reportUser(m.message_from)">
+                    <i class="fa fa-warning"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+      <tab heading="Sent">
+          <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>From</th>
+                <th>Date</th>
+                <th>Preview</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="m in sent">
+                <td style="background-image:url({{m.user_picture}});height:40px;width:40px;background-size:100%;">
+                </td>
+                <td >
+                  <a href="#/mate/{{m.message_to}}">{{m.user_name}}</a>
+                </td>
+                <td>{{m.message_date| date:'dd/MM/yyyy @ h:mma'}}</td>
+                <td>{{m.message_content  | limitTo: 100}}</td>
+                <td>
+                  <a href="#/mate/{{m.message_to}}" tooltip="View user's profile" class="btn btn-default"><i class="fa fa-user"></i> </a>
+                  <a href="javascript:;" class="btn btn-primary" ng-click="sendMessage(m.message_to)"><i class="fa fa-envelope-o"></i> Read full conversation</a>
+                  <a href="javascript:;" tooltip="Delete conversation" class="btn btn-danger" ng-click="deleteConversation(m.message_to)"><i class="fa fa-trash-o"></i> </a>
+                  <a ng-controller="ReportUserCtrl" tooltip="Report user" href="javascript:;" class="btn btn-warning" ng-click="reportUser(m.message_to)">
+                    <i class="fa fa-warning"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+    </tabset>
+
+  </div>
+  <div class="panel-footer">
+
+  </div>
+</div>

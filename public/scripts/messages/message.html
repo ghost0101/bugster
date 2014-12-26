@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h3>Conversation <i class="fa fa-envelope-o fa-2x pull-right"></i></h3>
+</div>
+<form class="form-horizontal" role="form" ng-submit="sendNow()">
+<div class="modal-body" >
+   <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+            <div class="panel-collapse" id="collapseOne">
+                <div class="panel-body-chat">
+                    <ul class="chat" ng-repeat="m in conversation">
+                      <li class="{{m.side}} clearfix">
+                        <span class="chat-img {{m.pull}}" style="padding:10px">
+                        <img ng-src="{{m.from_picture}}" alt="User Avatar" class="img-circle" width="30px" ng-if="m.from_picture"/>
+                        <img ng-src="http://placehold.it/80x80&text=:)" alt="User Avatar" class="img-circle" width="30px" ng-if="!m.from_picture"/>
+                      </span>
+                          <div class="chat-body clearfix">
+                              <div class="header" style="margin-left:20px">
+                                  <strong class="primary-font {{m.pull}}">{{m.from_name}}</strong>
+                                  <small class=" text-muted">
+                                      <span class="glyphicon glyphicon-time"></span>
+                                    {{m.message_date| date:'dd/MM/yyyy @ h:mma'}}</small>
+                              </div>
+                              <p class="{{m.pull}}">
+                                  {{m.message_content}}.
+                              </p>
+                          </div>
+                      </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" ng-model="FormMessage.message_content" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-sm" id="btn-chat">
+                                Send</button>
+                            <a class="btn btn-default btn-sm" ng-click="cancel()">
+                                Cancel</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <h3>Message to </h3>
+    <textarea placeholder="Type something..." ng-model="FormMessage.message_content" rows="6" cols="40"></textarea>-->
+
+
+</div>
+</form>
