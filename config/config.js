@@ -5,5 +5,7 @@ var config = require('./config.json');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://'+config.database.user+':'+config.database.password+'@'+config.database.host+'/'+config.database.database);
 
-exports.config 		= config;
+
+exports.port 		= config.port;
+
 exports.mongoose 	= mongoose;

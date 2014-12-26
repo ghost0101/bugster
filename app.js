@@ -1,29 +1,33 @@
-app = require('express.io')();
-app.http().io()
-count = 0
+'use strict'
 
+var app    	= require('./config/express');
+var config  = require('./config/config.js');
+
+
+
+
+//  Sockets
+var ImageSocket = require('./mods/images/socket.js');
+app.io.route('posts',ImageSocket);
+
+
+//  Controllers
 var ImageCtrl = require('./mods/images/index.js');
 var UserCtrl  = require('./mods/users/index.js');
 
-app.use('/',ImageCtrl);
+//  API routes
+app.use('/images/',ImageCtrl);
+app.use('/users/',UserCtrl);
 
-app.io.route('posts', {
-  create: function(req) {
-    count += 1
-    req.data.id = count
-    app.io.broadcast('posts:create', req.data)
-  },
-  remove: function(req) {
-    app.io.broadcast('posts:remove', req.data)
-  },
-  saludar: function (req) {
-    console.log("LLegó un saludo");
-    req.io.broadcast('posts:saludar',req.data)
-  }
-});
-// Send the client html.
-app.get('/', function(req, res) {
-res.sendfile(__dirname + '/public/app.html')
-})
-app.listen(3000);
-console.log("Listo!");
+
+var routes = require('./routes/index.js');
+app.use('/',routes);
+
+
+
+console.log(config.config);
+
+app.listen(config.port);
+console.log("==================================================================");
+console.log("=======================Listo: "+config.port+"=====================");
+console.log("==================================================================");
