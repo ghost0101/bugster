@@ -5,7 +5,7 @@ var config  = require('./../config/config');
 
 //  Models
 var Rincon   = require('./../models/rincon');
-var Rincon   = require('./../models/post');
+var Post   = require('./../models/post');
 
 app.get('/home', function(req, res) {
   // res.sendfile(__dirname + '/public/index.html');
@@ -13,12 +13,17 @@ app.get('/home', function(req, res) {
 });
 
 app.get('/rincon/:title',function (req,res) {
+
   Rincon.findOne({title:req.params.title},function (err,data) {
     if (err) {
       console.log(err);
       res.status(500).send("Error");
-    } else {
-      res.render('rincon',{base:config.domain,title:data.title,description:data.description});
+    } else {      
+      if (data) {
+        res.render('rincon',{base:config.domain,title:data.title,description:data.description});
+      }else{
+        res.send("Ops, eso no existe ¬¬");
+      }
     }
   });
 });
