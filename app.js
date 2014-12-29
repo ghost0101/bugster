@@ -7,21 +7,19 @@ var config  = require('./config/config.js');
 
 
 //  Sockets
-var ImageSocket = require('./mods/images/socket.js');
+var ImageSocket = require('./sockets/post.js');
 app.io.route('posts',ImageSocket);
 
 
 //  Controllers
-var ImageCtrl = require('./mods/images/index.js');
-var UserCtrl  = require('./mods/users/index.js');
+var index = require('./routes/index');
+var api   = require('./routes/api');
+
+
 
 //  API routes
-app.use('/images/',ImageCtrl);
-app.use('/users/',UserCtrl);
-
-
-var routes = require('./routes/index.js');
-app.use('/',routes);
+app.use('/',index);
+app.use('/api/',api);
 
 
 
