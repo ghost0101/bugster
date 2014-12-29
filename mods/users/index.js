@@ -1,7 +1,8 @@
 var User = require('./model.js');
 
-var usr = new User({name:"Cedric",nick:"Ced",date:new Date()});
 
+// var usr = new User({name:"Alicia",nick:"Belen",date:new Date()});
+//
 // usr.save(function (err) {
 //   if (err) {
 //     console.log(err);
@@ -9,7 +10,7 @@ var usr = new User({name:"Cedric",nick:"Ced",date:new Date()});
 //     console.log("Usuario guardado");
 //   }
 // });
-//
+
 
 
 // User.find({},function (err,data) {

@@ -20,7 +20,7 @@ var RinconSchema = new Schema({
 var Rincon = mongoose.model('Rincon',RinconSchema);
 
 
-// var rin = new Rincon({title:'memes',description:'Memes: todas esas payasadas que nos encontramos en el camino van aqui'});
+// var rin = new Rincon({title:'musica',description:'Comparte aqui esas canciones que has encontrado en youtube que merecen ser escuchadas por todo el mundo :)'});
 //
 // rin.save(function (err,data) {
 //   if (err) {

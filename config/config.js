@@ -7,5 +7,5 @@ mongoose.connect('mongodb://'+config.mongodb);
 
 
 exports.port 		= config.port;
-
+exports.domain 	= config.domain;
 exports.mongoose 	= mongoose;
