@@ -1,6 +1,4 @@
-var config  = require('./../../config/config.js');
-mongoose = config.mongoose;
-
+var mongoose  = require('./../../config/config.js').mongoose;
 
 var User = mongoose.model('User',{
   name:String,

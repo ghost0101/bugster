@@ -9,6 +9,11 @@ angular.module('app.controllers', []).controller('AppCtrl', [
     };
 
 
+    var url = document.URL.split('/rincon/')
+
+    url = url[1]
+
+
 
     //   Código para que al cambiar de página el scroll se vaya hasta arriba
     $rootScope.$on('$viewContentLoaded', function(){
@@ -67,8 +72,6 @@ angular.module('app.controllers', []).controller('AppCtrl', [
          room: 'room',
          user: data.user_name
        });
-
-
        if (data.user_picture) {
        }else{
           $scope.foto = 'http://graph.facebook.com/'+ data.user_facebook + '/picture';
@@ -77,8 +80,37 @@ angular.module('app.controllers', []).controller('AppCtrl', [
      });
 
   }
+]).controller('ToolbarCtrl', [
+  '$scope', 'Bugster', function($scope, Bugster) {
+
+  io = io.connect()
+
+  io.emit('posts:quantity', "hola");
+  io.on('posts:quantity', function(data) {
+    $scope.posts_quantity = data;
+  });
+
+
+
+  }
 ]).controller('NavCtrl', [
-  '$scope',  'filterFilter', 'Pagina', function($scope, filterFilter, Pagina) {
+  '$scope', 'Bugster', function($scope, Bugster) {
+
+
+
+    var url = document.URL.split('/rincon/')
+
+    url = url[1]
+
+    $scope.currentURL = url;
+
+    Bugster.rincones(function (err,data) {
+      if (err) {
+        alert(err);
+      } else {
+        $scope.rincones = data;
+      }
+    });
 
 
     // $scope.misPaginas = [{'pagina_nombre':'asdasd','dos':'asdasd'},{'pagina_nombre':'asdasd'}];
@@ -102,7 +134,7 @@ angular.module('app.controllers', []).controller('AppCtrl', [
       alert(data.data);
     });
 
-    io.on('posts:list',function (data) {      
+    io.on('posts:list',function (data) {
       console.log(data);
       var i = 1;
       // data.images.forEach(function (d) {

@@ -38,7 +38,7 @@ app.post('/:rincon',function (req,res) {
         console.log("Aúnún no" + after);
       }
 
-      if (after == 'undefined') {
+      if (typeof after != 'undefined') {
         Post.find({rincon:new Object(id),"date": { $lt: after}}).sort({'date': -1}).limit(4).exec(function(err,data) {
           if (err) {
             done(err);
