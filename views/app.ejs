@@ -22,11 +22,11 @@
               <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Rincones destacados</h4></div>
                   <div class="list-group">
                     <% topRincones.forEach(function(tr){ %>
-                    <a href="/rincon/<%tr.title%>" class="list-group-item">
+                    <a href="/rincon/<%=tr.title%>" class="list-group-item">
                       <%=tr.title%>
                     </a>
                     <% }) %>
-                  </div>                
+                  </div>
             </div>
           </div>
         </div>

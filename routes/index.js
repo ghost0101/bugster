@@ -1,5 +1,6 @@
 var app    	= require('express.io')();
 var config  = require('./../config/config');
+seo         = config.seo;
 
 var async   = require('async');
 
@@ -16,7 +17,7 @@ app.get('/', function(req, res) {
     if (err) {
       res.status(500).send("");
     } else {
-      res.render('app',{base:config.domain,topRincones:data});
+      res.render('app',{seo:seo,topRincones:data});
     }
   })
 
@@ -35,7 +36,9 @@ app.get('/rincon/:title',function (req,res) {
       res.status(500).send("Error");
     } else {
       if (data) {
-        res.render('rincon',{base:config.domain,title:data.title,description:data.description});
+        seo.title       = data.title;
+        seo.description = data.description;
+        res.render('rincon',{seo:seo,rincon:data});
       }else{
         res.send("Ops, eso no existe ¬¬");
       }
@@ -44,12 +47,16 @@ app.get('/rincon/:title',function (req,res) {
 });
 
 app.get('/post/:post',function (req,res) {
+  console.log("deberia ser aqui!!");
   Post.findOne({_id:req.params.post},function (err,data) {
     if (err) {
       console.log(err);
       res.status(500).send("Error");
     } else {
-      res.render('post',{base:config.domain,title:data.title,description:data.description,post:data});
+      console.log(data);
+      seo.title       = data.title;
+      seo.description = data.description;
+      res.render('post',{seo:seo,post:data});
     }
   });
 });

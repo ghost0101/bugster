@@ -18,15 +18,19 @@ app.get('/',function (req,res) {
   });
 });
 
-app.post('/:rincon',function (req,res) {
-
+app.post('/:rincon',function (req,res) {  
   async.waterfall([
     function (done) {
       Rincon.findOne({title:req.params.rincon},function (err,data) {
         if (err) {
           done(err);
         } else {
-          done(null,data._id);
+          if (data) {
+            done(null,data._id);
+          }else{
+            done(404)
+          }
+
         }
       });
     },function (id,done) {

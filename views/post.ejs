@@ -20,20 +20,21 @@
           <div class="row">
             <div class="col-md-5">
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h2 class="panel-title"><%=post.title%></h2>
-                </div>
                 <div class="panel-body">
 
-                  <p>
-                    <%=post.description%>
-                  </p>
+                  <h2><%=post.title%></h2>
 
+                  <% if(post.description!='undefined') { %>
+                    <%=post.description%>
+                  <% } %>
+                  <p>
+                  </p>
+                  <hr>
                   <div class="btn-group">
-                    <button class="btn btn-default"><i class="fa fa-thumbs-up"></i></button>
-                    <button class="btn btn-default"><i class="fa fa-thumbs-down"></i></button>
-                    <a class="btn btn-primary" href="/user/petronilo">
-                      <i class="fa fa-user"></i>
+                    <button class="btn btn-default"><i class="fa fa-thumbs-up"></i> Me agrada</button>
+                    <button class="btn btn-default"><i class="fa fa-thumbs-down"></i> Me desagrada</button>
+                    <a class="btn btn-default" href="/user/petronilo">
+                      <i class="fa fa-user"></i> Stalkear al autor
                     </a>
                   </div>
                 </div>

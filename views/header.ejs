@@ -4,24 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <base href="<%=base%>" >
-    <% if(typeof title!='undefined'&&typeof description!='undefined'){ %>
-    <title><%=title%> - <%=description%></title>
-    <meta name="description" content="<%=title%> - <%=description%>">
-      <% if(typeof post.image!='undefined'){ %>
-        <meta property="og:image" itemprop="image primaryImageOfPage" content="<%=post.image%>" />
-      <% } %>
-
-      <% if(typeof post.description!='undefined'){ %>
-          <meta name="twitter:description" property="og:description" itemprop="description" content=" <%=description%>">
-      <% } %>
-
-    <meta name="twitter:title" property="og:title" itemprop="title name" content="<%=title%>" />
-
-    <% }else{ %>
-    <title>Bugster - El rincón de los bichos</title>
-    <meta name="description" content="Bugster -  El rincón de los bichos">
-    <% } %>
+    <base href="<%=seo.base%>" >
+    <title><%=seo.title%></title>
+    <meta name="description" content="<%=seo.description%>">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="<%=seo.image%>" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="<%=seo.title%>" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="<%=seo.description%>">
 
     <meta name="generator" content="Bugster" />
 
