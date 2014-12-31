@@ -8,6 +8,10 @@ var PostSchema = new Schema({
   youtube:String,
   url: 		String,
   description: String,
+  views:  {
+    type:Number,
+    default:0
+  },
   rincon: {
     type:Schema.Types.ObjectId,
     ref:'Rincon'

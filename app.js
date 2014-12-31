@@ -22,9 +22,6 @@ app.use('/',index);
 app.use('/api/',api);
 
 
-
-console.log(config.config);
-
 app.listen(config.port);
 console.log("==================================================================");
 console.log("=======================Listo: "+config.port+"=====================");

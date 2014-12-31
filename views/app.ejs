@@ -14,11 +14,24 @@
     <div data-ng-controller="AppCtrl">
         <div data-ng-include=" 'views/menu.html' "></div>
 
-      <div class="view-container container">
-        <div class="indexable">
+      <div class="view-container container" id="main">
 
+        <div class="row">
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Rincones destacados</h4></div>
+                  <div class="list-group">
+                    <% topRincones.forEach(function(tr){ %>
+                    <a href="/rincon/<%tr.title%>" class="list-group-item">
+                      <%=tr.title%>
+                    </a>
+                    <% }) %>
+                  </div>                
+            </div>
+          </div>
         </div>
-        <section id="content" data-ng-view="" class="animate-fade-up"></section>
+
+
       </div>
     </div>
 

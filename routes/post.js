@@ -8,7 +8,7 @@ var async   = require('async');
 
 
 app.get('/:post_id',function (req,res) {
-  Post.find({_id:req.params.post_id},function (err,data) {
+  Post.findOne({_id:req.params.post_id},function (err,data) {
     if (err) {
       console.log(err);
       res.status(500).send("Error al cargar el post :/");

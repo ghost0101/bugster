@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var RinconSchema = new Schema({
   title: 	String,
   description: String,
+  priority: Number,
   date: {
     type:Date,
     default:Date.now()
@@ -15,6 +16,27 @@ var RinconSchema = new Schema({
     ref:'User'
   }
 });
+
+// RinconSchema.aggregate(
+//   { $group:{ _id: '$product_manufacturer', total_products: { $sum: 1 } }
+//   },
+//   function (err, res) {
+//     if (err) return handleError(err);
+//       console.log(res);
+//   }
+// );
+
+// Model.find({}, [fields], {'group': 'FIELD'}, function(err, logs) {
+//         ...
+// });
+
+// userModel.count({}, function( err, count){
+//     console.log( "Number of users:", count );
+// })
+
+RinconSchema.methods.latest = function latest(params, callback) {
+  console.log("nouuu"+params);
+}
 
 
 var Rincon = mongoose.model('Rincon',RinconSchema);
