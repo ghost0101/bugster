@@ -47,16 +47,19 @@ app.get('/rincon/:title',function (req,res) {
 });
 
 app.get('/post/:post',function (req,res) {
-  console.log("deberia ser aqui!!");
   Post.findOne({_id:req.params.post},function (err,data) {
     if (err) {
       console.log(err);
       res.status(500).send("Error");
     } else {
-      console.log(data);
       seo.title       = data.title;
       seo.description = data.description;
       res.render('post',{seo:seo,post:data});
+
+      Post.update({_id:req.params.post},{$inc:{views:1}},function (err,data) {
+        if (err) console.log(err);
+        else console.log("Leesto");
+      });
     }
   });
 });

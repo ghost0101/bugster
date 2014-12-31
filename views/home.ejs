@@ -2,6 +2,28 @@
 <!--main-->
 <div class="container" id="main">
 
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
+       <div class="panel-body">
+            <div class="list-group">
+              <h2>asd</h2>
+              <% topRincones %>
+              <% topRincones.forEach(tr){ %>
+                <a href="http://bootply.com/tagged/modal" class="list-group-item">
+                  <%=tr.title%> <span class="badge pull-right"><%=tr.posts%></span>
+                </a>
+              <% } %>
+
+              <a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a>
+              <a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
 
 
   <div class="row">

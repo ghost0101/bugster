@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <base href="<%=seo.base%>" >
-    <title><%=seo.title%></title>
+    <title><%=seo.title%> - <%=seo.description%></title>
     <meta name="description" content="<%=seo.description%>">
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<%=seo.image%>" />
     <meta name="twitter:title" property="og:title" itemprop="title name" content="<%=seo.title%>" />
@@ -27,3 +27,11 @@
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body data-ng-app="app" >
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=299606170246717&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
