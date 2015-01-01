@@ -1,6 +1,6 @@
 'use strict';
 //,'angular-loading-bar', 'ui.bootstrap','infinite-scroll','app.directives','app.ui.ctrls','app.ui.services','app.user','ModelUser','ModelMessage','app.messages'
-angular.module('app', ['ngRoute','ngSanitize','ui.bootstrap','app.controllers','app.ui.services','ModelMain','infinite-scroll','app.post']).config([
+angular.module('app', ['ngRoute','ngSanitize','ui.bootstrap','app.controllers','app.ui.services','app.filters','ModelMain','infinite-scroll','app.post']).config([
   '$routeProvider', function($routeProvider) {
     // return $routeProvider.when('/', {
     //   redirectTo: '/dashboard'

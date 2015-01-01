@@ -1,4 +1,18 @@
 angular.module('app.post', ['infinite-scroll','ModelPost'])
+  .controller('PostCtrl',['$scope','Post','$rootScope',function ($scope,Post,$rootScope) {
+
+    var post = document.URL.split('/post/');
+    post = post[1];
+
+
+    $rootScope.io.emit('posts:views',post);    
+    $rootScope.io.on('posts:views', function(data) {
+      $scope.post_views = data.views;
+      $('#post_views').html(data.views);
+    });
+
+
+  }])
   .controller('NewPostCtrl',['$scope','$modal',function ($scope,$modal) {
 
 

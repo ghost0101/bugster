@@ -21,9 +21,21 @@
             <div class="panel panel-default">
               <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Rincones destacados</h4></div>
                   <div class="list-group">
-                    <% topRincones.forEach(function(tr){ %>
-                    <a href="/rincon/<%=tr.title%>" class="list-group-item">
-                      <%=tr.title%>
+                    <% top.rincones.forEach(function(rincon){ %>
+                    <a href="/rincon/<%=rincon.title%>" class="list-group-item">
+                      <%=rincon.title%>
+                    </a>
+                    <% }) %>
+                  </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Posts destacados</h4></div>
+                  <div class="list-group">
+                    <% top.posts.forEach(function(post){ %>
+                    <a href="/post/<%=post._id%>" class="list-group-item">
+                      <%=post.title%>
                     </a>
                     <% }) %>
                   </div>

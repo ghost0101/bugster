@@ -15,7 +15,7 @@
         <div data-ng-include=" 'views/menu.html' "></div>
 
       <div class="view-container container">
-        <div class="indexable">
+        <div class="indexable" ng-controller="PostCtrl">
 
           <div class="row">
             <div class="col-md-7">
@@ -29,12 +29,13 @@
                 <div class="panel-body">
 
                   <h2><%=post.title%></h2>
-
-                  <% if(post.description!='undefined') { %>
-                    <%=post.description%>
-                  <% } %>
                   <p>
+                    <% if(post.description!='undefined') { %>
+                      <%=post.description%>
+                    <% } %>
                   </p>
+                  <strong>Vistas: {{post_views}}</strong>
+                  <span class="badge" id="post_views"></span>
                   <hr>
                   <div class="btn-group">
                     <button class="btn btn-default"><i class="fa fa-thumbs-up"></i> Me agrada</button>
@@ -59,6 +60,7 @@
     </div>
 
 </div><!--/main-->
+
 
 
 <% include login %>

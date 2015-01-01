@@ -3,7 +3,6 @@ var app  = require('./../config/express');
 var Post = require('./../models/post');
 
 var count;
-
 var ImageSocket =
   {
     list:function (req) {
@@ -13,6 +12,22 @@ var ImageSocket =
           console.log(err);
         } else {
           app.io.broadcast('posts:list',{images:data,total:data.length});
+        }
+      });
+
+    },
+    views:function (req) {
+      var post_id = req.data;
+      console.log("Nueva visita al post "+post_id);
+      req.io.join(post_id)
+      Post.findOne({_id:req.data},function (err,data) {
+        if (err) {
+          console.log(err);
+        } else {
+          if (data) {
+              console.log(data.views);
+              app.io.room(post_id).broadcast('posts:views',{views:data.views});
+          }
         }
       });
 
@@ -31,6 +46,9 @@ var ImageSocket =
     },
     quantity: function (req) {
       //  Código para contar los posts :)
+      console.log(req.data);
+      console.log("Recibiendo ... "+req);
+      app.io.broadcast('post:quantity',20);
     }
   }
 

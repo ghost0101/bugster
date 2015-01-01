@@ -10,16 +10,40 @@ var Rincon   = require('./../models/rincon');
 var Post   = require('./../models/post');
 
 
+app.http().io()
+// Broadcast the new visitor event on ready route.
+app.io.route('ready', function(req) {
+  req.io.broadcast('new visitor')
+});
 
 app.get('/', function(req, res) {
   // res.sendfile(__dirname + '/public/index.html');
-  Rincon.find({},'title description priority',{sort:{priority: -1},limit:5},function (err,data) {
-    if (err) {
-      res.status(500).send("");
-    } else {
-      res.render('app',{seo:seo,topRincones:data});
+
+  async.waterfall([
+    function (done) {
+      //  Top 5 Rincones
+      Rincon.find({},'title description priority',{sort:{priority: -1},limit:5},function (err,data) {
+        if (err) {
+          done(err);
+        } else {
+          var top = {};
+          top.rincones = data
+          done(null,top);
+        }
+      });
+    },function (top,done) {
+      Post.find({},'title description priority',{sort:{views: -1},limit:5},function (err,data) {
+        if (err) {
+          done(err);
+        } else {
+          top.posts = data;
+          done(null,top);
+        }
+      });
     }
-  })
+    ],function (err,top) {
+      res.render('app',{seo:seo,top:top});
+    });
 
 });
 
@@ -58,7 +82,6 @@ app.get('/post/:post',function (req,res) {
 
       Post.update({_id:req.params.post},{$inc:{views:1}},function (err,data) {
         if (err) console.log(err);
-        else console.log("Leesto");
       });
     }
   });

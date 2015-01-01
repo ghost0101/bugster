@@ -2,16 +2,11 @@
 angular.module('app.controllers', []).controller('AppCtrl', [
   '$scope', '$location','$http','logger','$rootScope', function($scope, $location,$http,logger,$rootScope) {
 
-    $scope.isSpecificPage = function() {
-      var path;
-      path = $location.path();
-      // return _.contains(['/404', '/pages/500', '/pages/login', '/pages/signin', '/pages/signin1', '/pages/signin2', '/pages/signup', '/pages/signup1', '/pages/signup2', '/pages/lock-screen'], path);
-    };
+    $rootScope.io = io.connect();    
 
 
-    var url = document.URL.split('/rincon/')
-
-    url = url[1]
+    var url = document.URL.split('/rincon/');
+    url = url[1];
 
 
 
@@ -39,6 +34,7 @@ angular.module('app.controllers', []).controller('AppCtrl', [
           return logger.logError(msg);
       }
     };
+
 
 
     //Get the signal from server and create your list
@@ -79,16 +75,18 @@ angular.module('app.controllers', []).controller('AppCtrl', [
 
      });
 
+
   }
 ]).controller('ToolbarCtrl', [
   '$scope', 'Bugster', function($scope, Bugster) {
 
-  io = io.connect()
-
-  io.emit('posts:quantity', "hola");
-  io.on('posts:quantity', function(data) {
-    $scope.posts_quantity = data;
-  });
+  // io = io.connect()
+  //
+  // io.emit('posts:quantity', "hola");
+  // io.on('posts:quantity', function(data) {
+  //   $scope.posts_quantity = data;
+  //   console.log(data);
+  // });
 
 
 
@@ -103,6 +101,7 @@ angular.module('app.controllers', []).controller('AppCtrl', [
     url = url[1]
 
     $scope.currentURL = url;
+
 
     Bugster.rincones(function (err,data) {
       if (err) {
