@@ -1,6 +1,10 @@
 var app    	= require('express.io')();
 var config  = require('./../config/config');
 seo         = config.seo;
+var auth    = require('./../config/auth.js');
+var passport        = auth.passport;
+ensureAuthenticated = auth.ensureAuthenticated;
+connection          = config.connection;
 
 var async   = require('async');
 
@@ -15,6 +19,13 @@ app.http().io()
 app.io.route('ready', function(req) {
   req.io.broadcast('new visitor')
 });
+
+function expressIO(req,res) {
+  if (req.user) {
+    req.session._id = req.user._id;
+    console.log(req.session._id);
+  }
+}
 
 app.get('/', function(req, res) {
   // res.sendfile(__dirname + '/public/index.html');
@@ -32,7 +43,8 @@ app.get('/', function(req, res) {
         }
       });
     },function (top,done) {
-      Post.find({},'title description priority',{sort:{views: -1},limit:5},function (err,data) {
+      //  Top 5 posts
+      Post.find({},'title description',{sort:{views: -1},limit:5},function (err,data) {
         if (err) {
           done(err);
         } else {
@@ -40,8 +52,19 @@ app.get('/', function(req, res) {
           done(null,top);
         }
       });
+    },function (top,done) {
+      //  Latest 5 posts
+      Post.find({},'title description',{sort:{date: -1},limit:5},function (err,data) {
+        if (err) {
+          done(err);
+        } else {
+          top.latest = data;
+          done(null,top);
+        }
+      });
     }
     ],function (err,top) {
+      // console.log(seo);
       res.render('app',{seo:seo,top:top});
     });
 
@@ -78,6 +101,10 @@ app.get('/post/:post',function (req,res) {
     } else {
       seo.title       = data.title;
       seo.description = data.description;
+
+      if(data.image)
+        seo.image = data.image;
+
       res.render('post',{seo:seo,post:data});
 
       Post.update({_id:req.params.post},{$inc:{views:1}},function (err,data) {
@@ -87,6 +114,13 @@ app.get('/post/:post',function (req,res) {
   });
 });
 
+app.get('/auth/facebook',passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 
 module.exports = app;

@@ -19,16 +19,12 @@ angular.module('ModelMain',['ngRoute'])
                         });
                 },
 
-                updatePass:function (datos, callback) {
-                    $http({
-                          data    :  datos,
-                          method  : 'POST',
-                          url     : '/api/user/editPass'
-                      }).success(function(data) {
-                            callback(null,'Ok');
-                        }).error(function(err){
-                            callback('Error',null);
-                        });
+                profile:function (callback) {
+                  $http.get('/api/users/profile').success(function (data) {
+                        callback(null,data)
+                     }).error(function(err){
+                        callback(err,null);
+                  });
                 },
                 rincones:function (callback) {
                   $http.get('/api/rincones/').success(function (data) {

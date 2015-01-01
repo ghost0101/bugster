@@ -7,7 +7,7 @@ var PostSchema = new Schema({
   image:  String,
   youtube:String,
   url: 		String,
-  description: String,
+  description: String,  
   views:  {
     type:Number,
     default:0

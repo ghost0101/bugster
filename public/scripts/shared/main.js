@@ -1,8 +1,12 @@
 'use strict';
 angular.module('app.controllers', []).controller('AppCtrl', [
-  '$scope', '$location','$http','logger','$rootScope', function($scope, $location,$http,logger,$rootScope) {
+  '$scope', '$location','$http','logger','$rootScope','Bugster', function($scope, $location,$http,logger,$rootScope,Bugster) {
 
-    $rootScope.io = io.connect();    
+
+
+    if (!$rootScope.io) {
+      $rootScope.io = io.connect();
+    }
 
 
     var url = document.URL.split('/rincon/');
@@ -11,16 +15,7 @@ angular.module('app.controllers', []).controller('AppCtrl', [
 
 
     //   Código para que al cambiar de página el scroll se vaya hasta arriba
-    $rootScope.$on('$viewContentLoaded', function(){
 
-      var interval = setInterval(function(){
-        if (document.readyState == "complete") {
-            window.scrollTo(0, 0);
-            clearInterval(interval);
-        }
-      },200);
-
-      });
 
     $scope.notify = function(type,msg) {
       switch (type) {
@@ -56,6 +51,15 @@ angular.module('app.controllers', []).controller('AppCtrl', [
         });
       });
     };
+
+    Bugster.profile(function (err,data) {
+      if (err) {
+        alert(err);
+      } else {
+        console.log(data);
+        $scope.user = data;
+      }
+    });
 
 
     // Información del usuario actual

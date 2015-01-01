@@ -5,11 +5,11 @@ var cookieParser = require('cookie-parser');
 var busboy = require('connect-busboy');
 // var logger = require('morgan');  // Logs con IP y datos del navegador
 var methodOverride = require('method-override');
-// var session = require('express-session');
-// var auth = require('./auth');
+var session = require('express-session');
+var auth = require('./auth');
 
 
-// var passport = auth.passport;
+var passport = auth.passport;
 
 
 
@@ -23,11 +23,11 @@ var methodOverride = require('method-override');
   app.use(cookieParser());
   app.use(methodOverride());
 
-  // app.use(session({ secret: 'bugstertola' }));
+  app.use(session({ secret: 'bugstertola' }));
   // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
-  // app.use(passport.initialize());
-  // app.use(passport.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(bodyParser.json());
   app.use(busboy());
 

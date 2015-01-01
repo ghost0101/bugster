@@ -20,3 +20,4 @@ exports.seo     = seo;
 exports.port 		= config.port;
 exports.domain 	= config.domain;
 exports.mongoose 	= mongoose;
+exports.facebook  = config.facebook;

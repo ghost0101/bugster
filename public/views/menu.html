@@ -25,15 +25,21 @@
 
               </form>
 
-              <form class="navbar-form pull-right">
+              <form class="navbar-form pull-right" ng-if="!user">
                 <button href="#loginModal" class="btn btn-success" role="button" data-toggle="modal">
                   <i class="fa fa-sign-in"></i>
-                  Login</button>
+                  Regístrate</button>
+                <a href="/auth/facebook" class="btn btn-primary">Inicia sesión</a>
               </form>
 
 
               <ul class="nav navbar-nav navbar-right">
-                 <li ng-if="user"><a href="http://www.bootply.com" target="_ext">{{posts_quantity}} Bootply+</a></li>
+                 <li ng-if="user">
+                   <a href="#" target="_ext">
+                     <img ng-src="http://graph.facebook.com/{{user.facebook}}/picture" alt="" width="20px" class="img-circle"/>
+                     {{posts_quantity}} {{user.name}}
+                    </a>
+                  </li>
                  <li ng-if="!user"></li>
                  <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i></a>
