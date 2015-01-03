@@ -12,13 +12,10 @@ var async   = require('async');
 //  Models
 var Rincon   = require('./../models/rincon');
 var Post   = require('./../models/post');
+var User   = require('./../models/user');
 
 
-app.http().io()
-// Broadcast the new visitor event on ready route.
-app.io.route('ready', function(req) {
-  req.io.broadcast('new visitor')
-});
+
 
 function expressIO(req,res) {
   if (req.user) {
@@ -59,6 +56,15 @@ app.get('/', function(req, res) {
           done(err);
         } else {
           top.latest = data;
+          done(null,top);
+        }
+      });
+    },function (top,done) {
+      Post.random({},function (err,data) {
+        if (err) {
+          done(err)
+        } else {
+          top.randomPost = data;
           done(null,top);
         }
       });
@@ -120,6 +126,40 @@ app.get('/post/:post',function (req,res) {
       }
     }
   });
+});
+
+app.get('/user/:user_id',function (req,res) {
+
+  async.parallel({
+    user:function (done) {
+      //  Traemos la información del usuario
+      User.findOne({_id:req.params.user_id},function (err,data) {
+        if (err) {
+          done(err);
+        } else {
+          done(null,data);
+        }
+      });
+    },
+    posts:function (done) {
+      Post.find({user:req.params.user_id},function (err,data) {
+        if (err) {
+          done(err);
+        } else {
+          done(null,data);
+        }
+      });
+    }
+  },function (err,result) {
+    if (err) {
+      res.render('error');
+    } else {
+      result.seo = config.seo;
+      console.log(result.posts);
+      res.render('user',result);
+    }
+  });
+
 });
 
 app.get('/auth/facebook',passport.authenticate('facebook'));

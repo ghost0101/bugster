@@ -18,9 +18,10 @@ app.get('/',function (req,res) {
   });
 });
 
-app.post('/:rincon',function (req,res) {  
+app.post('/:rincon',function (req,res) {
   async.waterfall([
     function (done) {
+      console.log(req.params.rincon);
       Rincon.findOne({title:req.params.rincon},function (err,data) {
         if (err) {
           done(err);
@@ -38,30 +39,29 @@ app.post('/:rincon',function (req,res) {
       var after = req.query.after;
 
       if(!after){
+        console.log("Aún no hay after");
         after = new Date();
-        // console.log("Aún no");
+      }else {
+        console.log("Si hay after: "+after);
       }
 
-      if (typeof after != 'undefined') {
-        Post.find({rincon:new Object(id),"date": { $lt: after}})
-          .sort({'date': -1})
-          .limit(4)
-          .exec(function(err,data) {
-            if (err) {
-              done(err);
-            } else {
-              done(null,data);
-            }
-        });
-      }else{
-        done(null,null);
-      }
+      Post.find({rincon:new Object(id),"date": { $lt: after}})
+        .sort({'date': -1})
+        .limit(3)
+        .exec(function(err,data) {
+          if (err) {
+            done(err);
+          } else {
+            console.log("Nuevos resultados "+data.length);
+            done(null,data);
+          }
+      });
 
 
     }
     ],function (err,data) {
       if (err) {
-        console.log(err);
+        // console.log(err);
         res.status(500).send("Error al cargar el contenido de este rincón :/");
       } else {
         res.json(data);

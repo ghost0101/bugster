@@ -29,6 +29,16 @@ var PostSchema = new Schema({
   }
 });
 
+PostSchema.statics.random = function(parameters,callback) {
+  this.count(function(err, count) {
+    if (err) {
+      return callback(err);
+    }
+    var rand = Math.floor(Math.random() * count);
+    this.findOne(parameters).skip(rand).exec(callback);
+  }.bind(this));
+};
+
 // ImageSchema.methods.latest = function latest(params, callback) {
 //   console.log("nouuu"+params);
 // }
