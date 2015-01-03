@@ -4,10 +4,11 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var busboy = require('connect-busboy');
 // var logger = require('morgan');  // Logs con IP y datos del navegador
-var methodOverride = require('method-override');
-var session = require('express-session');
+var methodOverride  = require('method-override');
+var session         = require('express-session');
+var MongoStore      = require('connect-mongo')(session);
 var auth = require('./auth');
-
+var connection = require('./config').mongoose.connection;
 
 var passport = auth.passport;
 
@@ -23,7 +24,12 @@ var passport = auth.passport;
   app.use(cookieParser());
   app.use(methodOverride());
 
-  app.use(session({ secret: 'bugstertola' }));
+  app.use(session({
+    secret: 'bugstertola',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: connection })
+  }));
   // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
   app.use(passport.initialize());
