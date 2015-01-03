@@ -34,19 +34,6 @@
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=299606170246717&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  $( document ).ready(function() {
-
-    io = io.connect();
-    // Send the ready event.
-    io.emit('ready');
-    // Listen for the new visitor event.
-    io.on('new visitor', function() {
-      console.log("New visitor "+new Date());
-    });
-
-  });
-
+  }(document, 'script', 'facebook-jssdk'));  
 
   </script>

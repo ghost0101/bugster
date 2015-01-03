@@ -7,7 +7,7 @@ var PostSchema = new Schema({
   image:  String,
   youtube:String,
   url: 		String,
-  description: String,  
+  description: String,
   views:  {
     type:Number,
     default:0
@@ -23,7 +23,7 @@ var PostSchema = new Schema({
   tags: [{
     type: String,
     lowercase: true }],
-  _user: {
+  user: {
     type:Schema.Types.ObjectId,
     ref:'User'
   }

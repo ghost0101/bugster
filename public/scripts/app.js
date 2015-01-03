@@ -1,7 +1,8 @@
 'use strict';
-//,'angular-loading-bar', 'ui.bootstrap','infinite-scroll','app.directives','app.ui.ctrls','app.ui.services','app.user','ModelUser','ModelMessage','app.messages'
-angular.module('app', ['ngRoute','ngSanitize','ui.bootstrap','app.controllers','app.ui.services','app.filters','ModelMain','infinite-scroll','app.post']).config([
-  '$routeProvider', function($routeProvider) {
+//,'angular-loading-bar', 'app.ui.services','app.user','ModelUser','ModelMessage','app.messages'
+angular.module('app', ['ngRoute','ngSanitize','ui.bootstrap','app.controllers','app.ui.services','app.filters','app.directives','ModelMain','infinite-scroll','app.post']).config([
+  '$routeProvider','$tooltipProvider', function($routeProvider,$tooltipProvider) {
+    $tooltipProvider.options({animation: false});
     // return $routeProvider.when('/', {
     //   redirectTo: '/dashboard'
     // }).when('/', {

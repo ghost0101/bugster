@@ -1,0 +1,43 @@
+<% include header %>
+<!--main-->
+
+<div>
+  <!--if lt IE 9
+    p.browsehappy
+      | You are using an
+      strong outdated
+      | browser. Please
+      a(href='http://browsehappy.com/') upgrade your browser
+      | to improve your experience.
+    -->
+
+    <div data-ng-controller="AppCtrl">
+        <div data-ng-include=" 'views/menu.html' "></div>
+
+      <div class="view-container container" id="main">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h2>404: Página no encontrada</h2>
+            <p class="lead">
+              Lamento decirte que no logramos encontrar lo que estabas buscando D:
+            </p>
+            <p class="lead">
+              No te desanimes, echale un ojo a otras de las cosillas que <strong>bugster</strong> tiene para ti :)
+            </p>
+            <a class="btn btn-success" href="/">Ver más locuras</a>
+          </div>
+        </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+</div><!--/main-->
+
+
+<% include login %>
+<% include footer %>

@@ -5,6 +5,12 @@
 
               <a href="#" class="navbar-brand">Bugster </a>
 
+              <!-- <md-button class="md-fab md-fab-top-left left" aria-label="Insert Drive">
+                <md-tooltip >
+                  Insert Drive
+                </md-tooltip>
+              </md-button> -->
+
 
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
               <i class="fa fa-search"></i>
@@ -32,15 +38,19 @@
                 <a href="/auth/facebook" class="btn btn-primary">Inicia sesión</a>
               </form>
 
-
               <ul class="nav navbar-nav navbar-right">
-                 <li ng-if="user">
-                   <a href="#" target="_ext">
-                     <img ng-src="http://graph.facebook.com/{{user.facebook}}/picture" alt="" width="20px" class="img-circle"/>
-                     {{posts_quantity}} {{user.name}}
-                    </a>
-                  </li>
-                 <li ng-if="!user"></li>
+                <li ng-if="user">
+                  <a href="#" target="_ext">
+                    <img ng-src="http://graph.facebook.com/{{user.facebook}}/picture" alt="" width="20px" class="img-circle"/>
+                   {{posts_quantity}} {{user.name}}
+                  </a>
+                </li>
+                <li ng-if="user">
+                  <a href="javascript:;" tooltip="Los bugs son">
+                    <i class="fa fa-bug"></i>
+                    <span class="badge btn-danger">{{user.bugs}}</span>
+                  </a>
+                </li>
                  <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i></a>
                     <ul class="dropdown-menu">
@@ -80,9 +90,9 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse2">
               <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="r in rincones" ng-class="{ active: currentURL == r.title }">
-                  <a href="rincon/{{r.title}}" title="{{t.description}}">
-                     {{r.title}}
+                <li ng-repeat="r in rincones" ng-class="{ active: currentURL == r.title }" tooltip="{{::r.description}}">
+                  <a href="rincon/{{::r.title}}" tooltip="asdasd">
+                     {{::r.title}}
                      </a>
                 </li>
                 <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>

@@ -5,14 +5,17 @@
               <div class="panel panel-default">
                 <div class="panel-thumbnail">
                   <div class="img-holder">
-                    <a href="/post/{{post._id}}">
-                      <img ng-src="{{post.image}}" class="img-responsive">
+                    <a href="/post/{{::post._id}}">
+                      <img ng-src="{{::post.image}}" class="img-responsive">
                     </a>
                   </div>
                 </div>
                 <div class="panel-body">
-                  <p class="lead">{{post.title}}</p>
-                  <p>{{post.description | limitTo:100}}</p>
+                  <p class="lead">{{::post.title}}</p>
+                  <p>{{::post.description | limitTo:100}}</p>
+
+                  <a href="/post/{{post._id}}" class="btn btn-danger pull-right" tooltip="Visitas">
+                    <i class="fa fa-eye" style="color:#fff"></i> {{::post.views}}</a>
 
                   <p>
                     <img src="http://api.randomuser.me/portraits/med/men/20.jpg" width="28px" height="28px">

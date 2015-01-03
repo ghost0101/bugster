@@ -17,6 +17,10 @@
       <div class="view-container container" id="main">
 
         <div class="row">
+          
+        </div>
+
+        <div class="row">
           <div class="col-md-4">
             <div class="panel panel-default">
               <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Rincones destacados</h4></div>
@@ -25,7 +29,7 @@
                     <a href="/rincon/<%=rincon.title%>" class="list-group-item">
                       <%=rincon.title%>
                     </a>
-                    <% }) %>
+                    <% }); %>
                   </div>
             </div>
           </div>
@@ -35,12 +39,25 @@
                   <div class="list-group">
                     <% top.posts.forEach(function(post){ %>
                     <a href="/post/<%=post._id%>" class="list-group-item">
-                      <%=post.title%>
+                      <%=post.title %>
                     </a>
-                    <% }) %>
+                    <% }); %>
                   </div>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Últimos posts</h4></div>
+                  <div class="list-group">
+                    <% top.latest.forEach(function(post){ %>
+                    <a href="/post/<%=post._id%>" class="list-group-item">
+                      <%=post.title %>
+                    </a>
+                    <% }); %>
+                  </div>
+            </div>
+          </div>
+
         </div>
 
 

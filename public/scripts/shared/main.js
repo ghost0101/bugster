@@ -54,7 +54,7 @@ angular.module('app.controllers', []).controller('AppCtrl', [
 
     Bugster.profile(function (err,data) {
       if (err) {
-        alert(err);
+        console.log(err);
       } else {
         console.log(data);
         $scope.user = data;

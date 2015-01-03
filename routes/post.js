@@ -44,12 +44,19 @@ app.post('/',function (req,res) {
         rincon: rincon
       };
 
+      if (req.user) {
+        data.user = req.user._id;
+      }
+
       //  Parámetros opcionales :)
 
       if (req.body.youtube)
         data.youtube = sanitizer.sanitize(req.body.youtube);
       if (req.body.image)
         data.image = sanitizer.sanitize(req.body.image);
+
+      if (req.user)
+        data._user = sanitizer.sanitize(req.user._id);
 
       var newPost = new Post(data);
 
