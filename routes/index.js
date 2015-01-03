@@ -65,7 +65,7 @@ app.get('/', function(req, res) {
     }
     ],function (err,top) {
       // console.log(seo);
-      res.render('app',{seo:seo,top:top});
+      res.render('app',{seo:config.seo,top:top});
     });
 
 });
