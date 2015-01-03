@@ -22,9 +22,9 @@
               <% if(typeof post.image!='undefined'){ %>
                 <img src="<%=post.image%>" alt="<%=post.title%>" style="max-width:100%" />
               <% } %>
-              
+
               <% if(typeof post.youtube!='undefined'){ %>
-                <iframe width="100%" height="400" src="//www.youtube.com/embed/<%=post.youtube%>" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="400" src="//www.youtube.com/embed/<%=post.youtube%>?rel=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>
               <% } %>
             </div>
 
@@ -62,9 +62,15 @@
                   <div class="btn-group">
                     <button class="btn btn-default"><i class="fa fa-thumbs-up"></i> Me agrada</button>
                     <button class="btn btn-default"><i class="fa fa-thumbs-down"></i> Me desagrada</button>
-                    <a class="btn btn-default" href="/user/<%=post.user%>">
-                      <i class="fa fa-user"></i> Stalkear al autor
-                    </a>
+                    <% if(post.user){ %>
+                      <a class="btn btn-default" href="/user/<%=post.user%>">
+                        <i class="fa fa-user"></i> Stalkear al autor
+                      </a>
+                    <% }else{ %>
+                      <a class="btn btn-default" href="javascript:;">
+                        <i class="fa fa-user"></i> Autor anónimo
+                      </a>
+                    <% } %>
                   </div>
                 </div>
               </div>
