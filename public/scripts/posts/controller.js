@@ -70,23 +70,28 @@ angular.module('app.post', ['infinite-scroll','ModelPost'])
     Lazy.prototype.posts = function() {
       if (this.busy) return;
       this.busy = true;
-      console.log("After: "+this.after);
       var latest;
       var url = "/api/rincones/"+this.url+"/?after="+this.after;
-      $http.post(url)
-          .error(function(err){
-              console.log(err);
-          })
-          .success(function(data) {
-            var items = data;
-            for (var i = 0; i < items.length; i++) {
-              this.items.push(items[i]);
-              latest = items[i].date;
-            }
-            this.after = latest;
-            // console.log("Latest "+latest);
-            this.busy = false;
-          }.bind(this));
+
+      if (typeof this.after!='undefined') {
+          $http.post(url)
+              .error(function(err){
+                  console.log(err);
+              })
+              .success(function(data) {
+                var items = data;
+                for (var i = 0; i < items.length; i++) {
+                  this.items.push(items[i]);
+                  latest = items[i].date;
+                }
+                this.after = latest;
+                console.log("Latest "+latest);
+                this.busy = false;
+              }.bind(this));
+      }else{
+        console.log("LLegamos al final :)");
+      }
+
     };
 
 
