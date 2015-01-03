@@ -5,7 +5,7 @@ angular.module('app.post', ['infinite-scroll','ModelPost'])
     post = post[1];
 
 
-    $rootScope.io.emit('posts:views',post);    
+    $rootScope.io.emit('posts:views',post);
     $rootScope.io.on('posts:views', function(data) {
       $scope.post_views = data.views;
       $('#post_views').html(data.views);
@@ -70,7 +70,7 @@ angular.module('app.post', ['infinite-scroll','ModelPost'])
     Lazy.prototype.posts = function() {
       if (this.busy) return;
       this.busy = true;
-      console.log(this.after);
+      console.log("After: "+this.after);
       var latest;
       var url = "/api/rincones/"+this.url+"/?after="+this.after;
       $http.post(url)

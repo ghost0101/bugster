@@ -56,7 +56,7 @@ angular.module('app.controllers', []).controller('AppCtrl', [
       if (err) {
         console.log(err);
       } else {
-        console.log(data);
+        // console.log(data);
         $scope.user = data;
       }
     });

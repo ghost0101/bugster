@@ -94,22 +94,30 @@ app.get('/rincon/:title',function (req,res) {
 });
 
 app.get('/post/:post',function (req,res) {
+  var seotags = {};
   Post.findOne({_id:req.params.post},function (err,data) {
     if (err) {
       console.log(err);
       res.status(500).send("Error");
     } else {
-      seo.title       = data.title;
-      seo.description = data.description;
+      if (data) {
+          seotags.title       = data.title;
+          seotags.description = data.description;
+          seotags.base        = seo.base;
 
-      if(data.image)
-        seo.image = data.image;
+          if(data.image)
+            seotags.image = data.image;
+          if(data.youtube)
+            seotags.image = 'http://img.youtube.com/vi/'+data.youtube+'/mqdefault.jpg';
 
-      res.render('post',{seo:seo,post:data});
+          res.render('post',{seo:seotags,post:data});
 
-      Post.update({_id:req.params.post},{$inc:{views:1}},function (err,data) {
-        if (err) console.log(err);
-      });
+          Post.update({_id:req.params.post},{$inc:{views:1}},function (err,data) {
+            if (err) console.log(err);
+          });
+      }else{
+        res.render('404',{seo:seo});
+      }
     }
   });
 });

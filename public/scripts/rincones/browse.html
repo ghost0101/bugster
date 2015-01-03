@@ -4,9 +4,14 @@
 
               <div class="panel panel-default">
                 <div class="panel-thumbnail">
-                  <div class="img-holder">
+                  <div ng-show="post.image" class="img-holder">
                     <a href="/post/{{::post._id}}">
                       <img ng-src="{{::post.image}}" class="img-responsive">
+                    </a>
+                  </div>
+                  <div ng-show="post.youtube" class="img-holder">
+                    <a href="/post/{{::post._id}}">
+                      <img ng-src="http://img.youtube.com/vi/{{::post.youtube}}/mqdefault.jpg" class="img-responsive" width="100%">
                     </a>
                   </div>
                 </div>
