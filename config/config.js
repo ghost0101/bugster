@@ -4,9 +4,18 @@ var config = require('./config.json');
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://'+config.mongodb,function (err) {
-  if(err) console.log(err);
-});
+
+
+function handleDisconnect() {
+  mongoose.connect('mongodb://'+config.mongodb,function (err) {
+    if(err) {
+        console.log(err);
+        setTimeout(handleDisconnect, 2000);
+    }
+  });    
+}
+
+handleDisconnect();
 
 var seo = {
   title:"Bugster - El rincón de los bichos",
