@@ -1,9 +1,9 @@
 *Bugster
 ===========
 
-WTF is this?
+What is this?
 ------------
-The truth is that I don't even know, but... eventually I will make something from this frankenstein.... would you like to be part of it?
+The truth is that I don't even know, but... eventually we will make something from this frankenstein.... would you like to be part of it?
 
 Why?
 ------------
@@ -19,26 +19,37 @@ I don't know much about what I am going to do, but I know that I will include so
 
 ![GitHub Logo](http://img-9gag-lol.9cache.com/photo/aZP3rbQ_460sa.gif)
 
-Rules-
-========
-Bugs
---------------
-* A positive vote  = 1 bug (OP earns 1 bug, voter looses 1, content is added to the voter favorite's gallery)
-* A negative vote  = 1 bug (OP looses 1 bug voter looses 1 bug too)
-* 10 visits = 1 bug
-* invite a friend = 50 bugs
+
 
 Features
 --------------
 * Create a new place/rincon
 	* Places are categories
-	* You can suscribe to different places
+	* Rincones group the content so you can find what you like easily
+	* Everybody can publish but moderators will be responsible for mantaining the spirit of their rincon
+	* 
+* Share your awkwardness
+	* Ok, we already know you are weird... so please some of that with us!
+	* Share pictures or interesting videos you have found on the interwebs!
+	* Comment the content, give feedback to the authors
+* Earn points (bugs)
+	* If you like a post... give to the author some points!
+	* If you have enough bugs we will give you nice features
+	* If your content is too awesome... we can pay you to keep doing the great work
+	* 
+* Create new rules
+	* you think we need a specific rule to improve the comunity? propose that rule and we can discuss about it 
+	* the rules can be about the grammar, the type of content accepted, the policies for removing the content
+	* 
+
 
 
 Recomendations
 --------------
 * Please be civil
-*
+* Grammar? that would be nice
+* Help us to find typos  
+* Help us to find bugs (software bugs) so we can fix them
+* Politeness, that would be a nice thing to have in this place!
+* Have fun!
 
-Resources
-* http://vimeo.com/56166857
