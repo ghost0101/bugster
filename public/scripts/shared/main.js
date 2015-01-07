@@ -11,7 +11,11 @@ angular.module('app.controllers', []).controller('AppCtrl', [
 
     var url = document.URL.split('/rincon/');
     url = url[1];
+    $scope.rincon = url;
 
+    if ($scope.rincon) {
+      $rootScope.rincon = $scope.rincon;
+    }
 
 
     //   Código para que al cambiar de página el scroll se vaya hasta arriba

@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
       });
     },function (top,done) {
       //  Top 5 posts
-      Post.find({},'title description',{sort:{views: -1},limit:5},function (err,data) {
+      Post.find({},'post_id title description',{sort:{views: -1},limit:5},function (err,data) {
         if (err) {
           done(err);
         } else {
@@ -51,7 +51,7 @@ app.get('/', function(req, res) {
       });
     },function (top,done) {
       //  Latest 5 posts
-      Post.find({},'title description',{sort:{date: -1},limit:5},function (err,data) {
+      Post.find({},'post_id title description',{sort:{date: -1},limit:5},function (err,data) {
         if (err) {
           done(err);
         } else {
@@ -62,7 +62,7 @@ app.get('/', function(req, res) {
     },function (top,done) {
       Post.random({},function (err,data) {
         if (err) {
-          done(err)
+          done(err);
         } else {
           top.randomPost = data;
           done(null,top);
@@ -84,14 +84,15 @@ app.get('/home', function(req, res) {
 app.get('/rincon/:title',function (req,res) {
 
   Rincon.findOne({title:req.params.title},function (err,data) {
+    var seoTags = config.seo;
     if (err) {
       console.log(err);
       res.status(500).send("Error");
     } else {
       if (data) {
-        seo.title       = data.title;
-        seo.description = data.description;
-        res.render('rincon',{seo:seo,rincon:data});
+        seoTags.title       = data.title;
+        seoTags.description = data.description;
+        res.render('rincon',{seo:seoTags,rincon:data});
       }else{
         res.send("Ops, eso no existe ¬¬");
       }
@@ -101,31 +102,61 @@ app.get('/rincon/:title',function (req,res) {
 
 app.get('/post/:post',function (req,res) {
   var seotags = {};
-  Post.findOne({_id:req.params.post},function (err,data) {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error");
-    } else {
-      if (data) {
-          seotags.title       = data.title;
-          seotags.description = data.description;
-          seotags.base        = seo.base;
+  var query = {};
 
-          if(data.image)
-            seotags.image = data.image;
-          if(data.youtube)
-            seotags.image = 'http://img.youtube.com/vi/'+data.youtube+'/mqdefault.jpg';
+  async.waterfall([
+      function (done) {
+        var post = req.params.post;
 
-          res.render('post',{seo:seotags,post:data});
+        Post.findOne({'post_id':post},function (err,data) {
+          if (err) {
+            done(err);
+          } else {
+            console.log(data);
+            if(data) done(null,data);
+            else
+              done(404);
+          }
 
-          Post.update({_id:req.params.post},{$inc:{views:1}},function (err,data) {
-            if (err) console.log(err);
+        });
+      },function (post,done) {
+          Post.related(post.rincon,4,function (err,data) {
+            if (err) {
+              done(err);
+            } else {
+              post.related = data;
+              done(null,post);
+            }
           });
-      }else{
-        res.render('404',{seo:seo});
       }
+  ],function (err,data) {
+    if (err) {
+      if (err===404) {
+        res.render('404');
+      }else{
+        console.error(err);
+        res.render('error');
+      }
+
+    } else {
+      seotags.title       = data.title;
+      seotags.description = data.description;
+      seotags.base        = seo.base;
+
+      if(data.image)
+        seotags.image = data.image;
+      if(data.youtube)
+        seotags.image = 'http://img.youtube.com/vi/'+data.youtube+'/mqdefault.jpg';
+
+        res.render('post',{seo:seotags,post:data});
+
+        Post.update({post_id:req.params.post},{$inc:{views:1}},function (err,data) {
+          if (err) console.log(err);
+        });
+
     }
   });
+
 });
 
 app.get('/user/:user_id',function (req,res) {

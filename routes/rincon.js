@@ -18,6 +18,17 @@ app.get('/',function (req,res) {
   });
 });
 
+app.get('/:rincon',function (req,res) {
+  Rincon.findOne({title:req.params.rincon},function (err,data) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error al recuperar los detalles del rincón");
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 app.post('/:rincon',function (req,res) {
   async.waterfall([
     function (done) {
@@ -39,10 +50,10 @@ app.post('/:rincon',function (req,res) {
       var after = req.query.after;
 
       if(!after){
-        console.log("Aún no hay after");
+        //console.log("Aún no hay after");
         after = new Date();
       }else {
-        console.log("Si hay after: "+after);
+        //console.log("Si hay after: "+after);
       }
 
       Post.find({rincon:new Object(id),"date": { $lt: after}})

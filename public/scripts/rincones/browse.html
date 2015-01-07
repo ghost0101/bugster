@@ -1,16 +1,16 @@
 <div ng-controller="BrowseCtrl">
         <div class="row" infinite-scroll='Lazy.posts()' infinite-scroll-distance='1'>
-            <div class="col-md-4" ng-repeat="post in Lazy.items" style="min-height:500px">
+            <div class="col-md-{{rincon.column}}" ng-repeat="post in Lazy.items" style="min-height:500px">
 
               <div class="panel panel-default">
                 <div class="panel-thumbnail">
                   <div ng-show="post.image" class="img-holder">
-                    <a href="/post/{{::post._id}}">
+                    <a href="/post/{{::post.post_id}}">
                       <img ng-src="{{::post.image}}" class="img-responsive">
                     </a>
                   </div>
                   <div ng-show="post.youtube" class="img-holder">
-                    <a href="/post/{{::post._id}}">
+                    <a href="/post/{{::post.post_id}}">
                       <img ng-src="http://img.youtube.com/vi/{{::post.youtube}}/mqdefault.jpg" class="img-responsive" width="100%">
                     </a>
                   </div>
@@ -19,7 +19,7 @@
                   <p class="lead">{{::post.title}}</p>
                   <p>{{::post.description | limitTo:100}}</p>
 
-                  <a href="/post/{{post._id}}" class="btn btn-danger pull-right" tooltip="Visitas">
+                  <a href="/post/{{post.post_id}}" class="btn btn-danger pull-right" tooltip="Visitas">
                     <i class="fa fa-eye" style="color:#fff"></i> {{::post.views}}</a>
 
                   <p>

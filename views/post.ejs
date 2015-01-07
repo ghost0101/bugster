@@ -80,8 +80,28 @@
               </div>
             </div>
 
+          </div>
+
+          <h3>Post relacionados</h3>
+          <div class="row">
+
+              <% if(typeof post.related!='undefined'){ %>
+                <% post.related.forEach(function (r) { %>
+                  <div class="col-md-3">
+                  <a href="/post/<%=r.post_id%>" class="thumbnail">
+                    <div class="img-holder">
+                      <% if (r.image!='undefined'){ %>
+                        <img src="<%=r.image %>" alt="<%=r.title %>" />
+                      <% } %>                        
+                    </div>
+                    <p class="caption"><%=r.title %></p>
+                  </a>
+                  </div>
+              <% }); %>
+              <% } %>
 
           </div>
+
 
         </div>
       </div>

@@ -1,0 +1,34 @@
+<% include header %>
+<!--main-->
+
+<div>
+  <!--if lt IE 9
+  p.browsehappy
+  | You are using an
+  strong outdated
+  | browser. Please
+  a(href='http://browsehappy.com/') upgrade your browser
+  | to improve your experience.
+-->
+
+<div data-ng-controller="AppCtrl">
+  <div data-ng-include=" 'views/menu.html' "></div>
+
+  <div class="view-container container">
+    <div class="indexable" ng-controller="PostCtrl">
+
+      <h2>Error</h2>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  </div><!--/main-->
+
+
+
+            <% include login %>
+            <% include footer %>

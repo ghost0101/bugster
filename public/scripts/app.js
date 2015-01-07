@@ -1,6 +1,6 @@
 'use strict';
 //,'angular-loading-bar', 'app.ui.services','app.user','ModelUser','ModelMessage','app.messages'
-angular.module('app', ['ngRoute','ngSanitize','ui.bootstrap','app.controllers','app.ui.services','app.filters','app.directives','ModelMain','infinite-scroll','app.post']).config([
+angular.module('app', ['ngRoute','ngSanitize','ui.bootstrap','app.controllers','app.ui.services','app.filters','app.directives','ModelMain','ModelRincon','infinite-scroll','app.post']).config([
   '$routeProvider','$tooltipProvider', function($routeProvider,$tooltipProvider) {
     $tooltipProvider.options({animation: false});
     // return $routeProvider.when('/', {

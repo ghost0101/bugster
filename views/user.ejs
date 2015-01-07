@@ -1,0 +1,73 @@
+<% include header %>
+<!--main-->
+
+<div>
+  <!--if lt IE 9
+    p.browsehappy
+      | You are using an
+      strong outdated
+      | browser. Please
+      a(href='http://browsehappy.com/') upgrade your browser
+      | to improve your experience.
+    -->
+
+    <div data-ng-controller="AppCtrl">
+        <div data-ng-include=" 'views/menu.html' "></div>
+
+      <div class="view-container container">
+        <div class="indexable">
+
+          <div class="row">
+            <div class="col-md-5">
+              <div class="panel">
+                <img src="http://placehold.it/300x300?text=Bugster" width="100%" alt="" />
+              </div>
+            </div>
+
+            <div class="col-md-7">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <table class="table">
+                    <tr>
+                      <td>Nombre</td>
+                      <td><%=user.name %></td>
+                    </tr>
+                    <tr>
+                      <td>Miembro desde</td>
+                      <td><%=user.date %></td>
+                    </tr>
+                    <tr>
+                      <td>Fortuna amasada</td>
+                      <td><%=user.bugs %></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Post enviados</h3>
+                </div>
+                <div class="panel-body">
+                  <ul>
+                  <% posts.forEach(function (post) { %>
+                    <li><a href="#"><%=post.title%></a></li>
+                  <% }); %>
+                  </ul>                  
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div><!--/main-->
+
+
+
+<% include login %>
+<% include footer %>

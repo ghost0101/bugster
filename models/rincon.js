@@ -10,12 +10,15 @@ var RinconSchema = new Schema({
     type:Date,
     default:Date.now()
     },
+  column: Number,
   moderators: [{ type : Schema.Types.ObjectId, ref: 'User' }],
-  _user: {
+  user: {
     type:Schema.Types.ObjectId,
     ref:'User'
   }
 });
+
+
 
 // RinconSchema.aggregate(
 //   { $group:{ _id: '$product_manufacturer', total_products: { $sum: 1 } }
@@ -30,10 +33,6 @@ var RinconSchema = new Schema({
 //         ...
 // });
 
-// userModel.count({}, function( err, count){
-//     console.log( "Number of users:", count );
-// })
-
 RinconSchema.methods.latest = function latest(params, callback) {
   console.log("nouuu"+params);
 }
@@ -42,7 +41,11 @@ RinconSchema.methods.latest = function latest(params, callback) {
 var Rincon = mongoose.model('Rincon',RinconSchema);
 
 
-// var rin = new Rincon({title:'musica',description:'Comparte aqui esas canciones que has encontrado en youtube que merecen ser escuchadas por todo el mundo :)'});
+// var rin = new Rincon(
+//   {title:'musica',
+//   description:'Si estás en busca de inspiración este Rincón es ideal para tí, aquí podrás encontrar todo de frases... desde inspiradoras hasta cómicas.',
+//   column:2
+//   });
 //
 // rin.save(function (err,data) {
 //   if (err) {

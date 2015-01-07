@@ -1,6 +1,7 @@
 var app  = require('./../config/express');
 
 var Post = require('./../models/post');
+var User = require('./../models/user');
 
 var count;
 var ImageSocket =
@@ -18,9 +19,9 @@ var ImageSocket =
     },
     views:function (req) {
       var post_id = req.data;
-      console.log("Nueva visita al post "+post_id);
-      req.io.join(post_id)
-      Post.findOne({_id:req.data},function (err,data) {
+      // console.log("Nueva visita al post "+post_id);
+      req.io.join(post_id);
+      Post.findOne({post_id:post_id},function (err,data) {
         if (err) {
           console.log(err);
         } else {
@@ -30,10 +31,21 @@ var ImageSocket =
           }
         }
       });
+    },
+    bug:function (req) {
+      var to = req.data;  //  User to whom we are giving bugs
 
+      //  We give one bug to the author
+      User.update({_id:req.params.post},{$inc:{bugs:1}},function (err,data) {
+        if (err) console.log(err);
+      });
+      //  We remove one bug from the visitor
+      User.update({_id:req.user._id},{$inc:{bugs:1}},function (err,data) {
+        if (err) console.log(err);
+      });
     },
     create: function(req) {
-      count += 1
+      count += 1;
       req.data.id = count;
       app.io.broadcast('posts:create', req.data);
     },

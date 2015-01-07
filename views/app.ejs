@@ -75,7 +75,7 @@
               <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Posts destacados</h4></div>
                   <div class="list-group">
                     <% top.posts.forEach(function(post){ %>
-                    <a href="/post/<%=post._id%>" class="list-group-item">
+                    <a href="/post/<%=post.post_id%>" class="list-group-item">
                       <%=post.title %>
                     </a>
                     <% }); %>
@@ -87,7 +87,7 @@
               <div class="panel-heading"><a href="#" class="pull-right">Ver todos</a> <h4>Últimos posts</h4></div>
                   <div class="list-group">
                     <% top.latest.forEach(function(post){ %>
-                    <a href="/post/<%=post._id%>" class="list-group-item">
+                    <a href="/post/<%=post.post_id%>" class="list-group-item">
                       <%=post.title %>
                     </a>
                     <% }); %>

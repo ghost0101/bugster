@@ -46,9 +46,21 @@ angular.module('app.post', ['infinite-scroll','ModelPost'])
 
 
   }])
-  .controller('BrowseCtrl', ['$scope','Lazy', function($scope,Lazy) {
+  .controller('BrowseCtrl', ['$scope','$rootScope','Lazy','Rincon', function($scope,$rootScope,Lazy,Rincon) {
 
     $scope.Lazy = new Lazy();
+
+    Rincon.details($rootScope.rincon,function (err,data) {
+      if (err) {
+        alert(err);
+      } else {
+        $scope.rincon = data;
+        if (!$scope.rincon.column) {
+          $scope.rincon.column  = 4;
+        }
+        console.error($scope.rincon.column);
+      }
+    });
 
   }]).factory('Lazy',['$http', function($http) {
     var Lazy = function() {
@@ -89,6 +101,7 @@ angular.module('app.post', ['infinite-scroll','ModelPost'])
                 this.busy = false;
               }.bind(this));
       }else{
+        this.busy = false;
         console.log("LLegamos al final :)");
       }
 
@@ -114,11 +127,13 @@ var ModalPost = ['rincon','$scope','$rootScope','Post','$modalInstance',function
 
 
   $scope.sendPost = function () {
+    $("#submitPost").attr('disabled','disabled');
     $scope.FormPost.rincon = rincon;
     Post.create($scope.FormPost,function (err,data) {
       if (err) {
         alert(err);
       } else {
+        $("#submitPost").attr('disabled',false);
         swal('Listo!',data,'success');
         $scope.cancel();
       }

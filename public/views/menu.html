@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse1">
               <form class="navbar-form pull-left">
                   <div class="input-group" style="max-width:470px;">
-                    <button class="btn btn-danger" ng-controller="NewPostCtrl" ng-click="newPost()">
+                    <button ng-show="rincon" class="btn btn-danger" ng-controller="NewPostCtrl" ng-click="newPost()">
                       <i class="fa fa-plus"></i> Nuevo post</a></li>
                     </button>
                     <!-- <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
@@ -50,7 +50,7 @@
                     <i class="fa fa-bug"></i>
                     <span class="badge btn-danger">{{user.bugs}}</span>
                   </a>
-                </li>
+                <!-- </li>
                  <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i></a>
                     <ul class="dropdown-menu">
@@ -59,7 +59,7 @@
                     </ul>
                  </li>
                  <li><a href="#" id="btnToggle"><i class="fa fa-th-large"></i></a></li>
-                 <li><a href="#"><i class="fa fa-user"></i></a></li>
+                 <li><a href="#"><i class="fa fa-user"></i></a></li> -->
                </ul>
             </div>
          </div>

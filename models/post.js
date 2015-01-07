@@ -1,8 +1,13 @@
 var mongoose  = require('./../config/config.js').mongoose;
-
+var shortId   = require('shortid');
 var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
+  post_id:{
+    type:     String,
+    unique:   true,
+    'default':  shortId.generate
+  },
   title: 	String,
   image:  String,
   youtube:String,
@@ -38,6 +43,17 @@ PostSchema.statics.random = function(parameters,callback) {
     this.findOne(parameters).skip(rand).exec(callback);
   }.bind(this));
 };
+
+PostSchema.statics.related = function(rincon,limit,callback) {
+  this.count(function(err, count) {
+    if (err) {
+      return callback(err);
+    }
+
+    this.find({rincon:rincon}).limit(limit).exec(callback);
+  }.bind(this));
+};
+
 
 // ImageSchema.methods.latest = function latest(params, callback) {
 //   console.log("nouuu"+params);
