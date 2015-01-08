@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var app    	= require('./config/express');
 var config  = require('./config/config.js');
