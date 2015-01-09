@@ -38,7 +38,20 @@
                       <%=post.description%>
                     <% } %>
                   </p>
+
+
+                  <hr>
                   <table class="table">
+                    <% if(post.link!='undefined'){ %>
+                      <tr>
+                        <th>
+                          Fuente:
+                        </th>
+                        <td>
+                          <a class="btn btn-success" href="<%=post.link%>">Visitar link</a>
+                        </td>
+                      </tr>
+                      <% } %>
                     <tr>
                       <td>
                         <strong>Vistas:</strong>
@@ -55,6 +68,22 @@
                         <span class="badge btn-info"><%=post.date%></span>
                       </td>
                     </tr>
+                    <tr>
+                      <th>
+                        Autor:
+                      </th>
+                      <td colspan="2">
+                        <% if(post.user){ %>
+                          <a class="btn btn-default" href="/user/<%=post.user%>">
+                            <i class="fa fa-user"></i> Ver perfil
+                          </a>
+                          <% }else{ %>
+                            <a class="btn btn-default" href="javascript:;">
+                              <i class="fa fa-user"></i> Autor anónimo
+                            </a>
+                          <% } %>
+                      </td>
+                    </tr>
                   </table>
 
 
@@ -63,19 +92,10 @@
                     <!-- <button class="btn btn-default"><i class="fa fa-thumbs-up"></i> Me agrada</button>
                     <button class="btn btn-default"><i class="fa fa-thumbs-down"></i> Me desagrada</button> -->
                     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bugster.mx/post/<%=post.post_id%>" data-via="bugstermx" data-size="large">Tweet</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
                     <div class="fb-like" data-href="http://bugster.mx/post/<%=post.post_id%>" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
                     <br>
-                    <% if(post.user){ %>
-                      <a class="btn btn-default" href="/user/<%=post.user%>">
-                        <i class="fa fa-user"></i> Stalkear al autor
-                      </a>
-                    <% }else{ %>
-                      <a class="btn btn-default" href="javascript:;">
-                        <i class="fa fa-user"></i> Autor anónimo
-                      </a>
-                    <% } %>
+
                   </div>
                 </div>
               </div>
@@ -95,11 +115,13 @@
                   <div class="col-md-3">
                   <a href="/post/<%=r.post_id%>" class="thumbnail">
                     <div class="img-holder">
-                      <% if (r.image!='undefined'){ %>
+                      <% if (r.image){ %>
                         <img src="<%=r.image %>" alt="<%=r.title %>" />
-                      <% } %>
+                      <% }else{ %>
+                        <img src="http://img.youtube.com/vi/<%=r.youtube %>/mqdefault.jpg" alt="<%=r.title %>" />
+                        <% } %>
                     </div>
-                    <p class="caption"><%=r.title %></p>
+                    <p class="caption"> <%=r.title %></p>
                   </a>
                   </div>
               <% }); %>

@@ -7,7 +7,7 @@ ensureAuthenticated = auth.ensureAuthenticated;
 connection          = config.connection;
 
 var async   = require('async');
-
+// var colors  = require('colors');
 
 //  Models
 var Rincon   = require('./../models/rincon');
@@ -71,6 +71,7 @@ app.get('/', function(req, res) {
     }
     ],function (err,top) {
       // console.log(seo);
+      console.log(config.seo);
       res.render('app',{seo:config.seo,top:top});
     });
 
@@ -83,16 +84,19 @@ app.get('/home', function(req, res) {
 
 app.get('/rincon/:title',function (req,res) {
 
+  var seotags = {};
   Rincon.findOne({title:req.params.title},function (err,data) {
-    var seoTags = config.seo;
+
+
     if (err) {
       console.log(err);
       res.status(500).send("Error");
     } else {
       if (data) {
-        seoTags.title       = data.title;
-        seoTags.description = data.description;
-        res.render('rincon',{seo:seoTags,rincon:data});
+        seotags.title       = data.title;
+        seotags.description = data.description;
+        seotags.base        = seo.base;
+        res.render('rincon',{seo:seotags,rincon:data});
       }else{
         res.send("Ops, eso no existe ¬¬");
       }
