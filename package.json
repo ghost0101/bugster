@@ -2,9 +2,9 @@
   "name": "Bugster",
   "version": "0.0.1",
   "description": "El rincón de los bichos",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "engines": {
     "node": "0.10.x"
