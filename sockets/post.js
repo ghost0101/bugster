@@ -62,6 +62,6 @@ var ImageSocket =
       console.log("Recibiendo ... "+req);
       app.io.broadcast('post:quantity',20);
     }
-  }
+  };
 
 module.exports = ImageSocket;

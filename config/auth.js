@@ -45,7 +45,7 @@ passport.use(new FacebookStrategy({
         name    : profile.name.givenName,
         facebook  : profile.id,
         gender    : profile.gender
-      }
+      };
 
       User.findOne({facebook:profile.id},function(err,data){
         if (err) {
