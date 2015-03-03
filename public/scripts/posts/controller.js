@@ -113,7 +113,7 @@ angular.module('app.post', ['infinite-scroll','ModelPost'])
   }]);
 
 
-var ModalPost = ['rincon','$scope','$rootScope','Post','$modalInstance',function(rincon,$scope,$rootScope,Post,$modalInstance) {
+var ModalPost = ['rincon','$scope','$rootScope','Post','$modalInstance','$route',function(rincon,$scope,$rootScope,Post,$modalInstance,$route) {
   console.log(rincon);
 
     $rootScope.FormPost = {};
@@ -136,8 +136,9 @@ var ModalPost = ['rincon','$scope','$rootScope','Post','$modalInstance',function
         $("#submitPost").attr('disabled',false);
         swal('Listo!',data,'success');
         $scope.cancel();
+        window.location.reload(false); 
       }
     });
-  }
+  };
 
 }];

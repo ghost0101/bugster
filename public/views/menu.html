@@ -3,7 +3,9 @@
        <div class="col-md-12">
             <div class="navbar-header">
 
-              <a href="#" class="navbar-brand">Bugster </a>
+              <a href="./" class="navbar-brand">
+                <img src="./img/bugster.png" alt="" width="140px" />
+              </a>
 
               <!-- <md-button class="md-fab md-fab-top-left left" aria-label="Insert Drive">
                 <md-tooltip >
@@ -12,17 +14,15 @@
               </md-button> -->
 
 
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+              <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
               <i class="fa fa-search"></i>
-              </button>
+              </button> -->
 
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse1">
               <form class="navbar-form pull-left">
                   <div class="input-group" style="max-width:470px;">
-                    <button ng-show="rincon" class="btn btn-danger" ng-controller="NewPostCtrl" ng-click="newPost()">
-                      <i class="fa fa-plus"></i> Nuevo post</a></li>
-                    </button>
+
                     <!-- <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                     <div class="input-group-btn">
                       <button class="btn btn-default btn-primary" type="submit"><i class="fa fa-search"></i></button>
@@ -35,7 +35,9 @@
                 <button href="#loginModal" class="btn btn-success" role="button" data-toggle="modal">
                   <i class="fa fa-sign-in"></i>
                   Regístrate</button>
-                <a href="/auth/facebook" class="btn btn-primary">Inicia sesión</a>
+                <a href="/auth/facebook" class="btn btn-primary">
+                  <i class="fa fa-facebook"></i>
+                  Inicia sesión</a>
               </form>
 
               <ul class="nav navbar-nav navbar-right">
@@ -67,7 +69,14 @@
     <div class="navbar navbar-default" id="subnav">
         <div class="col-md-12">
             <div class="navbar-header">
-                <h2 style="font-size:20px;margin-left:40px;color:#777">{{currentURL | uppercase}}</h2>
+                <h2 style="font-size:20px;margin-left:40px;color:#777">
+                  {{currentURL | uppercase}}
+                  &nbsp;
+                  <button ng-show="rincon" class="btn btn-danger btn-sm" ng-controller="NewPostCtrl" ng-click="newPost()" tooltip="Comparte contenido en este rincón" tooltip-placement="right">
+                    <i class="fa fa-plus"></i> Nuevo post</a></li>
+                  </button>
+                  </h2>
+
 
               <a href="#" style="margin-left:15px;" class="hidden navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home" style="color:#dd1111;"></i> Home <small><i class="fa fa-chevron-down"></i></small></a>
               <ul class="nav dropdown-menu">
@@ -95,7 +104,7 @@
                      {{::r.title}}
                      </a>
                 </li>
-                <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
+                <li class="hidden"><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
               </ul>
             </div>
          </div>
