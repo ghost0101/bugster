@@ -17,15 +17,15 @@
                 </div>
                 <div class="panel-body">
                   <p class="lead">{{::post.title}}</p>
-                  <p>{{::post.description | limitTo:100}}</p>
+                  <!-- <p ng-if="post.description">{{::post.description | limitTo:100}}</p> -->
 
                   <a href="/post/{{post.post_id}}" class="btn btn-danger pull-right" tooltip="Visitas">
                     <i class="fa fa-eye" style="color:#fff"></i> {{::post.views}}</a>
 
                   <p>
-                    <img src="http://api.randomuser.me/portraits/med/men/20.jpg" width="28px" height="28px">
+                    <!-- <img src="http://api.randomuser.me/portraits/med/men/20.jpg" width="28px" height="28px">
                     <img src="http://api.randomuser.me/portraits/med/men/21.jpg" width="28px" height="28px">
-                    <img src="http://api.randomuser.me/portraits/med/men/14.jpg" width="28px" height="28px">
+                    <img src="http://api.randomuser.me/portraits/med/men/14.jpg" width="28px" height="28px"> -->
                   </p>
                 </div>
               </div>

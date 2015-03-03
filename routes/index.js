@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
           done(err);
         } else {
           var top = {};
-          top.rincones = data
+          top.rincones = data;
           done(null,top);
         }
       });
@@ -60,6 +60,8 @@ app.get('/', function(req, res) {
         }
       });
     },function (top,done) {
+
+      //  Random post
       Post.random({},function (err,data) {
         if (err) {
           done(err);
@@ -68,10 +70,20 @@ app.get('/', function(req, res) {
           done(null,top);
         }
       });
+    },function (top,done) {
+
+      //  Random rincon
+      Rincon.random({},function (err,data) {
+        if (err) {
+          done(err);
+        } else {
+          // console.log(data);
+          top.randomRincon = data;
+          done(null,top);
+        }
+      });
     }
-    ],function (err,top) {
-      // console.log(seo);
-      console.log(config.seo);
+    ],function (err,top) {      
       res.render('app',{seo:config.seo,top:top});
     });
 

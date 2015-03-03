@@ -32,7 +32,7 @@
                   Bugster te permite filtrar el contenido que puedes ver por medio de los rincones, cada rincón se especializa en algo, por ejemplo autos, música, gatos, un evento, etc
                 </p>
                 <p align="center">
-                  <a class="btn btn-success" href="/post/<%=top.randomPost._id%>">Ir a post aleatorio</a>
+                  <a class="btn btn-success" href="/post/<%=top.randomPost.post_id%>">Ir a post aleatorio</a>
                 </p>
               </div>
               <div class="col-md-4">
@@ -41,7 +41,7 @@
                   Bugster te permite crear nuevos rincones abiertos a todo el público donde tú puedes definir el tipo de contenido que quieres que los usuario compartan en ese rincón.
                 </p>
                 <p align="center">
-                  <a class="btn btn-danger" href="/rincon/musica">Ir a un rincón aleatorio</a>
+                  <a class="btn btn-danger" href="/rincon/<%=top.randomRincon.title%>">Ir a un rincón aleatorio</a>
                 </p>
               </div>
               <div class="col-md-4">

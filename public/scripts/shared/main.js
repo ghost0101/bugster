@@ -1,9 +1,7 @@
 'use strict';
 angular.module('app.controllers', []).controller('AppCtrl', [
   '$scope', '$location','$http','logger','$rootScope','Bugster', function($scope, $location,$http,logger,$rootScope,Bugster) {
-
-
-
+    
     if (!$rootScope.io) {
       $rootScope.io = io.connect();
     }

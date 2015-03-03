@@ -16,7 +16,7 @@ var passport = auth.passport;
 
 
   var app = express();
-  app.http().io()
+  app.http().io();
 
   app.set('views', __dirname + './../views');
   app.set('view engine', 'ejs');
